@@ -96,4 +96,4 @@ The existing `AMUX2_3V` macro was successfully analyzed. The behavioral Verilog 
 
 ### Screenshot
 
-> Paste the terminal output showing the Verilog file contents and line count.
+> <img width="1127" height="746" alt="image" src="https://github.com/user-attachments/assets/d82fd061-18be-46d7-b777-ddd78594ea29" />
