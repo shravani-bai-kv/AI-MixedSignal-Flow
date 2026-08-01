@@ -1,0 +1,42 @@
+# Practical 23 – GDSII Generation and Visualization
+
+## Objective
+
+To generate the final GDSII layout for the `design_mux` design using the OpenLane physical design flow and verify the generated layout by opening it in Magic.
+
+---
+
+## Command Used
+
+```bash
+magic runs/RUN_2026.07.30_19.23.41/results/signoff/design_mux.gds
+```
+
+---
+
+## Result
+
+The generated GDSII file was successfully opened in Magic for layout visualization.
+
+---
+
+## Screenshot
+
+> **Paste your screenshot here**
+> 
+
+*(Screenshot of the GDSII layout opened in Magic after executing the above command.)*
+
+---
+
+## Observation
+
+- Successfully generated the final GDSII layout using OpenLane.
+- Opened the generated GDSII in Magic for physical layout visualization.
+- Verified that the physical layout was successfully generated.
+
+---
+
+## Conclusion
+
+The OpenLane RTL-to-GDSII flow successfully produced the final GDSII file for the `design_mux` design. The generated layout was opened in Magic, confirming successful GDSII generation and visualization.
