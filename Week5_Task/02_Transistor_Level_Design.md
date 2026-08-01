@@ -1,8 +1,8 @@
-# Transistor-Level Design of the New 2:1 Analog MUX
+# Transistor-Level Design
 
 ## Objective
 
-Design a completely new transistor-level 2:1 analog multiplexer using SKY130 MOSFETs. The new design will replace the existing placeholder `AMUX2_3V` macro and will later be verified through simulation, layout generation, DRC, LVS, and OpenLane integration.
+Design a completely new transistor-level 2:1 Analog Multiplexer using SKY130 MOSFETs. This design will replace the placeholder `AMUX2_3V` macro used in the repository.
 
 ---
 
@@ -10,88 +10,66 @@ Design a completely new transistor-level 2:1 analog multiplexer using SKY130 MOS
 
 The new analog multiplexer should satisfy the following requirements:
 
-- Technology: SKY130
+- SKY130 technology
 - Double-height standard cell
 - Two analog inputs
 - One analog output
 - One select signal
 - Compatible with OpenLane integration
 - DRC and LVS clean
-- Legal pin placement for routing
 - Suitable for post-layout extraction
 
 ---
 
-## Circuit Selection
+## Selected Architecture
 
-A transmission-gate-based architecture was selected for the new analog multiplexer.
+A transmission-gate-based architecture was selected because it provides:
+
+- Rail-to-rail signal transmission
+- Low ON resistance
+- Improved analog performance
+- Better signal integrity than a single-pass transistor implementation
 
 Each transmission gate consists of:
 
 - One NMOS transistor
 - One PMOS transistor
 
-The NMOS and PMOS operate together to pass both logic '0' and logic '1' efficiently, providing full voltage swing and improved analog signal integrity.
+Two transmission gates are used to implement the 2:1 analog multiplexer.
 
 ---
 
 ## Functional Operation
 
-The multiplexer has two transmission gates.
+| Select | Connected Input |
+|---------|-----------------|
+| 0 | I0 |
+| 1 | I1 |
 
-### Transmission Gate 1
-
-- Connects Input I0 to the output.
-- Enabled when `SEL = 0`.
-
-### Transmission Gate 2
-
-- Connects Input I1 to the output.
-- Enabled when `SEL = 1`.
-
-To operate correctly, complementary control signals are required:
-
-- SEL
-- SEL̅ (inverted SEL)
-
-The inverter generating SEL̅ will also be included in the transistor-level design.
+An inverter generates the complementary control signal required to drive the PMOS devices.
 
 ---
 
-## Proposed Block Diagram
+## Design Workspace
 
-```
-          I0
-           |
-      Transmission Gate
-           |
-           +--------- OUT
-           |
-      Transmission Gate
-           |
-          I1
+A dedicated design workspace was created inside the cloned `vsdmixedsignalflow` repository.
 
-Control Signals
-
-SEL
-SEL̅
+```text
+week5_mux_design/
+├── extracted/
+├── layouts/
+├── netlists/
+├── simulations/
+└── spice/
 ```
 
----
+### Screenshot
 
-## Expected Advantages
+> <img width="1001" height="663" alt="image" src="https://github.com/user-attachments/assets/84f75bcc-3405-4282-bce6-00b8756f501f" />
 
-Compared to the placeholder analog MUX, the proposed design aims to provide:
-
-- Full rail-to-rail signal transmission
-- Lower ON resistance
-- Improved analog performance
-- Better routing accessibility
-- Clean physical implementation
-- Compatibility with SKY130 design rules
 
 ---
 
-## Design Summary
+## Outcome
 
-The transmission-gate architecture was selected because it offers reliable analog switching, good signal integrity, and straightforward implementation in the SKY130 process. This architecture will now be converted into a transistor-level SPICE netlist for functional verification using ngspice.
+The design environment for the new analog multiplexer has been prepared. The next step is to create the transistor-level SPICE netlist using SKY130 device models and verify its functionality using ngspice.
